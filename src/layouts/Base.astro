@@ -1,0 +1,102 @@
+---
+import { siteConfig } from '../data/site.config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = siteConfig.seo.metaTitle,
+  description = siteConfig.seo.metaDescription,
+  image = siteConfig.seo.ogImage,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, siteConfig.urlSite);
+const ogImageURL = new URL(image, siteConfig.urlSite);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FastFoodRestaurant",
+  "name": siteConfig.nome,
+  "image": ogImageURL.toString(),
+  "@id": siteConfig.urlSite,
+  "url": siteConfig.urlSite,
+  "telephone": `+${siteConfig.whatsapp.numero}`,
+  "priceRange": "R$ 20 - R$ 40",
+  "servesCuisine": ["Burgers", "Fast Food", "Hambúrguer Artesanal"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": siteConfig.localizacao.endereco,
+    "addressLocality": siteConfig.localizacao.cidade,
+    "addressRegion": siteConfig.localizacao.estado,
+    "postalCode": siteConfig.localizacao.cep,
+    "addressCountry": "BR"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "18:30",
+      "closes": "23:30"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": siteConfig.avaliacoes.notaMedia.toString(),
+    "reviewCount": siteConfig.avaliacoes.totalAvaliacoes.toString()
+  },
+  "hasMenu": siteConfig.orderUrl
+};
+---
+
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="theme-color" content={siteConfig.seo.themeColor} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={siteConfig.nome} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Performance: Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Preload Hero Image for optimal LCP -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/hero-burger-400.webp"
+      type="image/webp"
+    />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="bg-brand-cream text-brand-dark font-sans antialiased selection:bg-brand-orange selection:text-white">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,113 @@
+---
+import { siteConfig } from '../data/site.config';
+
+const { localizacao, horario } = siteConfig;
+---
+
+<section id="localizacao" class="py-16 sm:py-24 bg-brand-cream text-brand-dark" aria-labelledby="localizacao-heading">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      
+      <!-- Info Left Box -->
+      <div class="lg:col-span-6 flex flex-col items-start">
+        <span class="inline-block text-xs sm:text-sm font-extrabold uppercase tracking-widest text-brand-forest bg-brand-forest/10 px-4 py-1.5 rounded-full mb-3">
+          Onde Estamos & Horários
+        </span>
+        <h2 id="localizacao-heading" class="font-display text-4xl sm:text-5xl uppercase tracking-wide text-brand-forest mb-4">
+          Venha nos visitar em Ji-Paraná
+        </h2>
+        <p class="text-base text-gray-700 leading-relaxed mb-8">
+          Ambiente descontraído para curtir com a família, amigos ou saborear ao ar livre. Ou peça pelo delivery e receba quentinho onde estiver.
+        </p>
+
+        <!-- Address & Map Link -->
+        <div class="w-full bg-white p-6 rounded-3xl shadow-md border border-black/5 space-y-4 mb-6">
+          <div class="flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-brand-orange/10 text-brand-orange flex items-center justify-center shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 text-base">Endereço</h3>
+              <p class="text-sm text-gray-600 mt-0.5 leading-relaxed">
+                {localizacao.endereco} — {localizacao.bairro}<br />
+                {localizacao.cidade} - {localizacao.estado}, CEP {localizacao.cep}
+              </p>
+            </div>
+          </div>
+
+          <a
+            href={localizacao.linkGoogleMaps}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center w-full sm:w-auto px-5 py-3 rounded-xl bg-brand-forest hover:bg-brand-orange text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-yellow"
+          >
+            <span>Abrir no Google Maps</span>
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Schedule & Details Right Box -->
+      <div class="lg:col-span-6 flex flex-col gap-6">
+        
+        <!-- Operating Hours Card -->
+        <div class="bg-brand-forest text-white p-7 sm:p-8 rounded-3xl shadow-xl relative overflow-hidden">
+          <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-brand-yellow">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 class="font-display text-2xl uppercase tracking-wider text-white">Horário de Atendimento</h3>
+            </div>
+
+            <div class="space-y-2 text-sm text-white/90">
+              <div class="flex items-center justify-between py-2 border-b border-white/10">
+                <span class="font-semibold">{horario.dias}</span>
+                <span class="text-brand-yellow font-bold">{horario.horarioFuncionamento}</span>
+              </div>
+              <div class="flex items-center justify-between py-2 text-white/60">
+                <span>Segunda-feira</span>
+                <span>Fechado</span>
+              </div>
+            </div>
+
+            <p class="text-xs text-white/70 mt-4 italic">
+              * Sujeito a alteração em feriados. Consulte o cardápio digital para o status em tempo real.
+            </p>
+          </div>
+        </div>
+
+        <!-- Amenities / Delivery Coverage -->
+        <div class="bg-white p-6 sm:p-7 rounded-3xl shadow-md border border-black/5">
+          <h3 class="font-bold text-gray-900 text-sm uppercase tracking-wider mb-4">Comodidades no Local</h3>
+          <div class="grid grid-cols-3 gap-3 text-center">
+            <div class="p-3 rounded-2xl bg-brand-cream-alt flex flex-col items-center justify-center">
+              <span class="text-2xl mb-1">🌿</span>
+              <span class="text-xs font-semibold text-gray-700">Mesas Externas</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-brand-cream-alt flex flex-col items-center justify-center">
+              <span class="text-2xl mb-1">👶</span>
+              <span class="text-xs font-semibold text-gray-700">Cadeirinhas Altas</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-brand-cream-alt flex flex-col items-center justify-center">
+              <span class="text-2xl mb-1">📶</span>
+              <span class="text-xs font-semibold text-gray-700">Wi-Fi Grátis</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

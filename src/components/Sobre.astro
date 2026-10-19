@@ -1,0 +1,82 @@
+---
+import { siteConfig } from '../data/site.config';
+---
+
+<section id="sobre" class="py-16 sm:py-24 bg-white text-brand-dark overflow-hidden" aria-labelledby="sobre-heading">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      
+      <!-- Image Column -->
+      <div class="lg:col-span-5 order-2 lg:order-1 relative">
+        <div class="relative mx-auto max-w-md lg:max-w-none">
+          <!-- Background decoration -->
+          <div class="absolute -inset-4 bg-brand-yellow/30 rounded-3xl -rotate-2 -z-10" aria-hidden="true"></div>
+          
+          <picture>
+            <source
+              type="image/webp"
+              srcset="/images/sobre-burger-400.webp 400w, /images/sobre-burger-800.webp 800w, /images/sobre-burger.webp 1080w"
+              sizes="(max-width: 640px) 380px, (max-width: 1024px) 450px, 480px"
+            />
+            <img
+              src="/images/sobre-burger-400.webp"
+              alt="Hambúrguer artesanal sendo preparado na Rocket Burger em Ji-Paraná"
+              width="400"
+              height="400"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-auto object-cover rounded-2xl shadow-xl ring-1 ring-black/5"
+            />
+          </picture>
+
+          <!-- Floating Stat Badge -->
+          <div class="absolute -bottom-4 -right-4 sm:bottom-6 sm:-right-6 bg-brand-forest text-white p-4 sm:p-5 rounded-2xl shadow-xl border border-white/10 max-w-[200px]">
+            <span class="block font-display text-3xl sm:text-4xl text-brand-yellow leading-none">4.8 ★</span>
+            <span class="block text-xs text-white/90 mt-1 font-medium">Nota no Google com 40 avaliações</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text Column -->
+      <div class="lg:col-span-7 order-1 lg:order-2 flex flex-col items-start">
+        <span class="inline-block text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[#9A3412] bg-brand-orange/15 px-4 py-1.5 rounded-full mb-3">
+          Nossa Origem
+        </span>
+        <h2 id="sobre-heading" class="font-display text-3xl sm:text-5xl uppercase tracking-wide text-brand-forest leading-tight mb-6">
+          {siteConfig.sobre.titulo}
+        </h2>
+
+        <div class="space-y-4 text-base sm:text-lg text-gray-800 leading-relaxed">
+          {siteConfig.sobre.paragrafos.map((paragrafo) => (
+            <p>{paragrafo}</p>
+          ))}
+        </div>
+
+        <!-- Pillar highlights -->
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+          <div class="p-4 rounded-xl bg-brand-cream border border-black/5">
+            <h3 class="font-bold text-brand-forest text-base flex items-center gap-2">
+              <span class="text-brand-orange text-lg">🍔</span>
+              Padrão Artesanal
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-700 mt-1">
+              Carnes moldadas diariamente, ponto suculento e ingredientes selecionados com rigor.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-brand-cream border border-black/5">
+            <h3 class="font-bold text-brand-forest text-base flex items-center gap-2">
+              <span class="text-brand-orange text-lg">🚀</span>
+              Agilidade no Delivery
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-700 mt-1">
+              Embalagem térmica pensada para o lanche chegar crocante e quente na sua casa.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>

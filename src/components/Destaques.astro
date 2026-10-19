@@ -1,0 +1,96 @@
+---
+import { siteConfig, buildOrderUrl } from '../data/site.config';
+---
+
+<section id="destaques" class="py-16 sm:py-24 bg-brand-cream-alt text-brand-dark" aria-labelledby="destaques-heading">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+      <span class="inline-block text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[#9A3412] bg-brand-orange/15 px-4 py-1.5 rounded-full mb-3">
+        Os Favoritos da Galáxia
+      </span>
+      <h2 id="destaques-heading" class="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-wide text-brand-forest">
+        Destaques do Cardápio
+      </h2>
+      <p class="mt-3 text-base text-gray-800 leading-relaxed">
+        Uma seleção dos lanches mais pedidos da Rocket Burger. Feitos na hora com os melhores ingredientes.
+      </p>
+    </div>
+
+    <!-- Product Grid (Responsive: 1 col on mobile, 2 on tablet, 4 on desktop) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-6">
+      {siteConfig.destaques.map((item) => {
+        const itemOrderUrl = buildOrderUrl(`destaque-${item.id}`);
+        return (
+          <article class="group flex flex-col bg-white rounded-3xl p-5 shadow-md hover:shadow-xl transition-all duration-300 border border-black/5 hover:-translate-y-1">
+            <!-- Badge & Image Frame -->
+            <div class="relative overflow-hidden rounded-2xl bg-brand-cream aspect-square mb-4 flex items-center justify-center">
+              {item.badge && (
+                <span class="absolute top-3 left-3 z-10 text-[11px] font-bold uppercase tracking-wider bg-brand-yellow text-brand-dark px-2.5 py-1 rounded-full shadow-sm">
+                  {item.badge}
+                </span>
+              )}
+              <picture>
+                <source type="image/webp" srcset={item.imagem.srcset} sizes="(max-width: 640px) 340px, (max-width: 1024px) 280px, 260px" />
+                <img
+                  src={item.imagem.src}
+                  alt={item.imagem.alt}
+                  width={item.imagem.width}
+                  height={item.imagem.height}
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </picture>
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 flex flex-col">
+              <h3 class="font-display text-2xl uppercase tracking-wide text-brand-forest group-hover:text-brand-orange transition-colors">
+                {item.nome}
+              </h3>
+              <p class="mt-2 text-sm text-gray-700 leading-relaxed flex-1">
+                {item.descricao}
+              </p>
+
+              <!-- Order Button with UTM -->
+              <div class="mt-5 pt-4 border-t border-gray-100 flex items-center justify-between">
+                <a
+                  href={itemOrderUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-brand-forest hover:bg-brand-orange text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-yellow"
+                >
+                  <span>Pedir este</span>
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- Cardápio Completo Callout -->
+    <div class="mt-12 text-center">
+      <p class="text-sm text-gray-700 mb-3">
+        Quer ver todos os combos, porções de batata frita e bebidas?
+      </p>
+      <a
+        href={buildOrderUrl('destaques-ver-cardapio')}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-[#9A3412] hover:text-brand-orange-hover font-bold text-sm uppercase tracking-wider underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-brand-orange rounded px-2 py-1"
+      >
+        <span>Ver cardápio completo no delivery</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>

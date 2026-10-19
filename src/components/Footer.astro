@@ -1,0 +1,75 @@
+---
+import { siteConfig, buildOrderUrl } from '../data/site.config';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-brand-dark text-white/80 py-12 border-t border-white/10" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Rodapé institucional</h2>
+  
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-white/10">
+      
+      <!-- Brand & Mission -->
+      <div class="md:col-span-5 flex flex-col items-start">
+        <a href="#" class="flex items-center gap-2.5 mb-3 group focus:outline-none focus:ring-2 focus:ring-brand-yellow rounded" aria-label="Rocket Burger início">
+          <div class="w-8 h-8 rounded-lg bg-brand-orange flex items-center justify-center text-white">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+            </svg>
+          </div>
+          <span class="font-display text-2xl tracking-wider text-white">
+            ROCKET <span class="text-brand-orange">BURGER</span>
+          </span>
+        </a>
+        <p class="text-xs sm:text-sm text-white/60 max-w-sm leading-relaxed mb-4">
+          {siteConfig.slogan} Feito com carnes selecionadas de 150g, pão brioche dourado e sabor incomparável em Ji-Paraná - RO.
+        </p>
+        <span class="text-xs text-white/50">
+          {siteConfig.localizacao.endereco} — {siteConfig.localizacao.cidade}/{siteConfig.localizacao.estado}
+        </span>
+      </div>
+
+      <!-- Quick Nav -->
+      <div class="md:col-span-3">
+        <h3 class="font-display text-lg tracking-wider text-white uppercase mb-3">Navegação</h3>
+        <ul class="space-y-2 text-xs sm:text-sm text-white/70">
+          <li><a href="#destaques" class="hover:text-brand-yellow transition-colors focus:outline-none focus:underline">Destaques</a></li>
+          <li><a href="#sobre" class="hover:text-brand-yellow transition-colors focus:outline-none focus:underline">Sobre nós</a></li>
+          <li><a href="#avaliacoes" class="hover:text-brand-yellow transition-colors focus:outline-none focus:underline">Avaliações do Google</a></li>
+          <li><a href="#localizacao" class="hover:text-brand-yellow transition-colors focus:outline-none focus:underline">Localização e Horários</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact & Delivery -->
+      <div class="md:col-span-4">
+        <h3 class="font-display text-lg tracking-wider text-white uppercase mb-3">Atendimento</h3>
+        <p class="text-xs sm:text-sm text-white/70 mb-2">
+          <strong>Horário:</strong> {siteConfig.horario.dias}, das {siteConfig.horario.horarioFuncionamento}
+        </p>
+        <p class="text-xs sm:text-sm text-white/70 mb-4">
+          <strong>WhatsApp:</strong> <a href={siteConfig.whatsapp.link} target="_blank" rel="noopener noreferrer" class="hover:text-brand-yellow underline">{siteConfig.whatsapp.formatado}</a>
+        </p>
+        <a
+          href={buildOrderUrl('footer')}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-orange hover:text-brand-orange-hover focus:outline-none focus:underline"
+        >
+          <span>Abrir Cardápio de Pedidos</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-white/50 gap-2">
+      <p>© {currentYear} {siteConfig.nome}. Todos os direitos reservados.</p>
+      <p>Desenvolvido para máxima velocidade e conversão.</p>
+    </div>
+  </div>
+</footer>

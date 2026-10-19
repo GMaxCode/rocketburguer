@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rocketburger.com.br/sitemap.xml
